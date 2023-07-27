@@ -4,6 +4,9 @@ iex(new-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/
 # get all sids with the SeMachineAccountPrivilege enabled
 $SeMachineAccountPrivilege=(Get-DomainPolicy -Policy DC).PrivilegeRights.SEMachineAccountPrivilege
 
+# get MAQ
+$MAQ=(Get-DomainObject) | Select-Object ms-ds-machineaccountquota | select -First 1
+
 # resolve all sids to groups and print the results
 ForEach($sid in $SeMachineAccountPrivilege)
 {
@@ -11,9 +14,13 @@ ForEach($sid in $SeMachineAccountPrivilege)
   if($resource -eq "Authenticated Users")
   {
     Write-Host "$($resource) has the SeMachineAccountPrivileges privileges" -ForegroundColor Black -BackgroundColor Red
+    Write-Host ""
+    Write-Host "$MAQ"
   }
   else
   {
     Write-Host "$($resource) has the SeMachineAccountPrivileges privileges" -ForegroundColor Black -BackgroundColor Yellow
+    Write-Host ""
+    Write-Host "$MAQ"
   }
 }
