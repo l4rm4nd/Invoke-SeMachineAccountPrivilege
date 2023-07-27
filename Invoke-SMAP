@@ -18,7 +18,5 @@ ForEach($sid in $SeMachineAccountPrivilege)
   else
   {
     Write-Host "$($resource) has the SeMachineAccountPrivileges privileges with MAQ of $MAQ" -ForegroundColor Black -BackgroundColor Yellow
-    Write-Host ""
-    Write-Host "$MAQ"
   }
 }
