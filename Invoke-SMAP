@@ -13,13 +13,11 @@ ForEach($sid in $SeMachineAccountPrivilege)
   $resource=(Convert-SidToName $sid.Substring(1))
   if($resource -eq "Authenticated Users")
   {
-    Write-Host "$($resource) has the SeMachineAccountPrivileges privileges" -ForegroundColor Black -BackgroundColor Red
-    Write-Host ""
-    Write-Host "$MAQ"
+    Write-Host "$($resource) has the SeMachineAccountPrivileges privileges with MAQ of $MAQ" -ForegroundColor Black -BackgroundColor Red
   }
   else
   {
-    Write-Host "$($resource) has the SeMachineAccountPrivileges privileges" -ForegroundColor Black -BackgroundColor Yellow
+    Write-Host "$($resource) has the SeMachineAccountPrivileges privileges with MAQ of $MAQ" -ForegroundColor Black -BackgroundColor Yellow
     Write-Host ""
     Write-Host "$MAQ"
   }
